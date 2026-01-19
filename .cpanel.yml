@@ -1,0 +1,21 @@
+---
+deployment:
+  tasks:
+    # Set your GoDaddy public_html path (replace 'username' with your actual cPanel username)
+    - export DEPLOYPATH=/home/w9s38eetkz1w/public_html
+    # Clean old files (optional - be careful with this)
+    # - rm -rf $DEPLOYPATH/*
+    # Build locally and push the 'out' folder, OR:
+    # Copy all files to deploy path
+    - /bin/cp -R * $DEPLOYPATH
+    - cd $DEPLOYPATH
+    # Install dependencies and build
+    - npm install
+    - npm run build
+    # Copy static export to public_html
+    - /bin/cp -R out/* $DEPLOYPATH
+    # Clean up build files (keep only static files)
+    - rm -rf $DEPLOYPATH/node_modules
+    - rm -rf $DEPLOYPATH/src
+    - rm -rf $DEPLOYPATH/.next
+    - rm -rf $DEPLOYPATH/out
