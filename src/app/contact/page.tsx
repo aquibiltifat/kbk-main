@@ -30,6 +30,7 @@ const contactInfo = [
 export default function ContactPage() {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitted, setSubmitted] = useState(false);
+    const [error, setError] = useState<string | null>(null);
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -46,19 +47,36 @@ export default function ContactPage() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsSubmitting(true);
+        setError(null);
 
-        // Simulate form submission
-        await new Promise((resolve) => setTimeout(resolve, 1000));
+        try {
+            const response = await fetch("/api/contact", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData),
+            });
 
-        setSubmitted(true);
-        setFormData({
-            name: "",
-            email: "",
-            phone: "",
-            subject: "",
-            message: "",
-        });
-        setIsSubmitting(false);
+            const data = await response.json();
+
+            if (data.success) {
+                setSubmitted(true);
+                setFormData({
+                    name: "",
+                    email: "",
+                    phone: "",
+                    subject: "",
+                    message: "",
+                });
+            } else {
+                setError(data.error || "Failed to send message. Please try again.");
+            }
+        } catch {
+            setError("Failed to send message. Please try again later.");
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
@@ -125,7 +143,13 @@ export default function ContactPage() {
 
                                 {submitted && (
                                     <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg text-green-700">
-                                        Thank you for your message! We&apos;ll get back to you soon.
+                                        Thank you for your message! We&apos;ll get back to you soon. Check your email for confirmation.
+                                    </div>
+                                )}
+
+                                {error && (
+                                    <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700">
+                                        {error}
                                     </div>
                                 )}
 
