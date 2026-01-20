@@ -5,6 +5,7 @@ import {
     Layers, Flame, Gem
 } from "lucide-react";
 import Layout from "@/components/layout/Layout";
+import WhatWeDoSection from "@/components/services/WhatWeDoSection";
 
 export const metadata: Metadata = {
     title: "Industrial Services & AMC | Plant Maintenance India",
@@ -71,20 +72,7 @@ export default function ServicesPage() {
             </section>
 
             {/* What We Do */}
-            <section className="section-padding bg-background">
-                <div className="container-custom">
-                    <div className="max-w-3xl mx-auto text-center mb-16">
-                        <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">
-                            What We <span className="text-primary">Do</span>
-                        </h2>
-                        <p className="text-lg text-muted-foreground">
-                            We provide genuine branded industrial products and equipment to keep your operations running
-                            smoothly. Our offerings cover a wide range of industries, from Oil & Gas to Construction and
-                            Pharmaceuticals.
-                        </p>
-                    </div>
-                </div>
-            </section>
+            <WhatWeDoSection />
 
             {/* Target Industries */}
             <section className="section-padding bg-muted">
@@ -120,43 +108,6 @@ export default function ServicesPage() {
                 </div>
             </section>
 
-            {/* Products & Equipment */}
-            <section className="section-padding bg-background">
-                <div className="container-custom">
-                    <div className="text-center max-w-2xl mx-auto mb-16">
-                        <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">
-                            Our Products & <span className="text-primary">Equipment</span>
-                        </h2>
-                        <p className="text-muted-foreground">
-                            Comprehensive range of industrial materials and equipment.
-                        </p>
-                    </div>
-
-                    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {products.map((product) => (
-                            <div
-                                key={product.name}
-                                className="group p-5 bg-card rounded-lg border border-border hover:border-primary/30 transition-all duration-300 hover:shadow-medium"
-                            >
-                                <div className="flex items-start gap-4">
-                                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors duration-300">
-                                        <product.icon className="w-6 h-6 text-primary" />
-                                    </div>
-                                    <div>
-                                        <h3 className="font-heading font-semibold text-foreground mb-1">
-                                            {product.name}
-                                        </h3>
-                                        <p className="text-sm text-muted-foreground">
-                                            {product.description}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
             {/* Why Choose Us */}
             <section className="section-padding bg-primary">
                 <div className="container-custom">
@@ -168,6 +119,55 @@ export default function ServicesPage() {
                             We combine quality, reliability, and timely delivery to support your industrial projects
                             and operations, making us a trusted partner across multiple sectors worldwide.
                         </p>
+                    </div>
+                </div>
+            </section>
+
+            {/* Our Commitment */}
+            <section className="section-padding bg-background">
+                <div className="container-custom">
+                    <div className="text-center max-w-2xl mx-auto mb-16">
+                        <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">
+                            Our <span className="text-primary">Commitment</span>
+                        </h2>
+                    </div>
+
+                    <div className="grid md:grid-cols-2 gap-8">
+                        <div className="p-8 bg-card rounded-xl border border-border shadow-soft hover:shadow-medium transition-shadow duration-300">
+                            <h3 className="text-xl font-heading font-bold text-foreground mb-3">
+                                After-Sales Service
+                            </h3>
+                            <p className="text-muted-foreground leading-relaxed">
+                                Reliable support and assistance to ensure smooth operation and long-term performance after delivery.
+                            </p>
+                        </div>
+
+                        <div className="p-8 bg-card rounded-xl border border-border shadow-soft hover:shadow-medium transition-shadow duration-300">
+                            <h3 className="text-xl font-heading font-bold text-foreground mb-3">
+                                Quality Products
+                            </h3>
+                            <p className="text-muted-foreground leading-relaxed">
+                                Genuine, high-quality products sourced from trusted brands and manufacturers.
+                            </p>
+                        </div>
+
+                        <div className="p-8 bg-card rounded-xl border border-border shadow-soft hover:shadow-medium transition-shadow duration-300">
+                            <h3 className="text-xl font-heading font-bold text-foreground mb-3">
+                                Anticipating Client Demands
+                            </h3>
+                            <p className="text-muted-foreground leading-relaxed">
+                                Proactively understanding client needs to deliver timely and effective solutions.
+                            </p>
+                        </div>
+
+                        <div className="p-8 bg-card rounded-xl border border-border shadow-soft hover:shadow-medium transition-shadow duration-300">
+                            <h3 className="text-xl font-heading font-bold text-foreground mb-3">
+                                High Level of Proficiency
+                            </h3>
+                            <p className="text-muted-foreground leading-relaxed">
+                                Experienced professionals with strong technical knowledge and industry expertise.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </section>

@@ -4,103 +4,308 @@ import { useState } from "react";
 import Image from "next/image";
 import Layout from "@/components/layout/Layout";
 
-const allBrands = [
+// Brand data with logos from Rodavigo
+interface Brand {
+    name: string;
+    logo?: string;
+}
+
+const brandLogos: Record<string, string> = {
     // A
-    "ABB", "ABICOR BINZEL", "ABANAKI", "AEROMECCANICA STRANICH SPA", "AERZEN", "AFFIX",
-    "ALLEN BRADLY", "ALLEN TEL", "ALLEN BRADLEY", "AMPERES ELECTRONICS", "ANAMET",
-    "AIR PRODUCTS AND CONTROL INC", "APOLLO", "APC", "APT", "ARCONIC CORPORATION",
-    "ARO", "ARPEGE MASTER K", "ASCO", "ASHCROFT", "AVID",
+    "ABB": "https://rodavigo.net/datos/logos-marcas-png/abb.png",
+    "ABICOR BINZEL": "https://rodavigo.net/datos/logos-marcas-png/abicor-binzel.png",
+    "ABANAKI": "https://rodavigo.net/datos/logos-marcas-png/abanaki.png",
+    "ALLEN BRADLEY": "https://rodavigo.net/datos/logos-marcas-png/allen-bradley.png",
+    "ALLEN BRADLY": "https://rodavigo.net/datos/logos-marcas-png/allen-bradley.png",
+    "APC": "https://rodavigo.net/datos/logos-marcas-png/apc.png",
+    "AIR PRODUCTS AND CONTROL INC": "https://rodavigo.net/datos/logos-marcas-png/apc.png",
+    "APOLLO": "https://rodavigo.net/datos/logos-marcas-png/apollo.png",
+    "ARO": "https://rodavigo.net/datos/logos-marcas-png/aro.png",
+    "ASCO": "https://rodavigo.net/datos/logos-marcas-png/asco.png",
+    "ASHCROFT": "https://rodavigo.net/datos/logos-marcas-png/ashcroft.png",
+    "AERZEN": "https://rodavigo.net/datos/logos-marcas-png/aerzen.png",
+
     // B
-    "BARTEC", "BDK VALVE", "BAUMER", "BLACK BOX", "BONFIGLIOLI", "BRADLEY LIFTING",
-    "BITZER", "BUHLER", "BUSSMAN", "BENTLY NEVADA CORP", "Balluff", "Belt", "BPW",
-    "Braid", "Breco", "BERNING-MASCHINENFABRIK",
+    "BARTEC": "https://rodavigo.net/datos/logos-marcas-png/bartec[1].png",
+    "BAUMER": "https://rodavigo.net/datos/logos-marcas-png/baumer.png",
+    "BONFIGLIOLI": "https://rodavigo.net/datos/logos-marcas-png/bonfiglioli.png",
+    "BITZER": "https://rodavigo.net/datos/logos-marcas-png/bitzer.png",
+    "BUHLER": "https://rodavigo.net/datos/logos-marcas-png/buhler.png",
+    "Balluff": "https://rodavigo.net/datos/logos-marcas-png/balluff.png",
+    "BUSSMAN": "https://rodavigo.net/datos/logos-marcas-png/bussmann.png",
+    "BENTLY NEVADA CORP": "https://rodavigo.net/datos/logos-marcas-png/bently-nevada.png",
+    "Breco": "https://rodavigo.net/datos/logos-marcas-png/breco.png",
     // C
-    "CB CHINA CHANGSHA PUMP WORKS CO", "CHINT", "CINTEC HEAVY EQUIPMENT COMPANY",
-    "CEMBRE", "CHANGSHA PUMP WORKS CO. LTD", "CISCO", "CMC PRO", "CONDUCTIX WAMPFLER",
-    "CATERPILLAR", "CONTRINEX", "CRESSALL", "COPELAND", "CANFIELD", "CAREL", "CATTRON",
-    "CEFEM", "COOPER BUSSMANN",
+    "CHINT": "https://rodavigo.net/datos/logos-marcas-png/chint.png",
+    "CISCO": "https://rodavigo.net/datos/logos-marcas-png/cisco.png",
+    "CATERPILLAR": "https://rodavigo.net/datos/logos-marcas-png/caterpillar.png",
+    "CONTRINEX": "https://rodavigo.net/datos/logos-marcas-png/contrinex.png",
+    "COPELAND": "https://rodavigo.net/datos/logos-marcas-png/copeland.png",
+    "CAREL": "https://rodavigo.net/datos/logos-marcas-png/carel.png",
+    "COOPER BUSSMANN": "https://rodavigo.net/datos/logos-marcas-png/cooper-bussmann.png",
+    "CONDUCTIX WAMPFLER": "https://rodavigo.net/datos/logos-marcas-png/conductix-wampfler.png",
     // D
-    "DANFOSS", "DEUBLIN", "Demag", "DELTA",
+    "DANFOSS": "https://rodavigo.net/datos/logos-marcas-png/danfoss.png",
+    "DEUBLIN": "https://rodavigo.net/datos/logos-marcas-png/deublin.png",
+    "Demag": "https://rodavigo.net/datos/logos-marcas-png/demag.png",
+    "DELTA": "https://rodavigo.net/datos/logos-marcas-png/delta.png",
+
     // E
-    "EBNER", "Eastern Transformers", "ENDRESS+HAUSER", "EMERSON", "ENTRELEC", "EBM-PAPST", "EMG",
+    "ENDRESS+HAUSER": "https://rodavigo.net/datos/logos-marcas-png/endress-hauser.png",
+    "EMERSON": "https://rodavigo.net/datos/logos-marcas-png/emerson.png",
+    "EBM-PAPST": "https://rodavigo.net/datos/logos-marcas-png/ebmpapst.png",
+    "Eastern Transformers": "https://rodavigo.net/datos/logos-marcas-png/eastern-transformers.png",
+
     // F
-    "FERRAZ SHAWMUT", "FME FANON", "FRIGOR TECH", "FEAM", "FESTO", "FAG", "FARPOINTE DATA",
-    "Feldbinder", "FIPNET", "FLENDER", "FLYGT", "FMIC", "FSQ",
+    "FESTO": "https://rodavigo.net/datos/logos-marcas-png/festo.png",
+    "FAG": "https://rodavigo.net/datos/logos-marcas-png/fag.png",
+    "FLENDER": "https://rodavigo.net/datos/logos-marcas-png/flender.png",
+    "FLYGT": "https://rodavigo.net/datos/logos-marcas-png/flygt.png",
+    "FERRAZ SHAWMUT": "https://rodavigo.net/datos/logos-marcas-png/ferraz-shawmut.png",
+
     // G
-    "GEDORE", "GENERAL", "GE", "GIOVENZANA", "GRUNDFOS", "GARLOCK", "GENERAL ELECTRIC",
-    "GENERAL MONITORS", "GLAMA", "GRAINGER", "GREENLEE", "Gali", "GEMU", "Grainger",
+    "GE": "https://rodavigo.net/datos/logos-marcas-png/general-electric.png",
+    "GENERAL ELECTRIC": "https://rodavigo.net/datos/logos-marcas-png/general-electric.png",
+    "GRUNDFOS": "https://rodavigo.net/datos/logos-marcas-png/grundfos.png",
+    "GEDORE": "https://rodavigo.net/datos/logos-marcas-png/gedore.png",
+    "GARLOCK": "https://rodavigo.net/datos/logos-marcas-png/garlock.png",
+    "GEMU": "https://rodavigo.net/datos/logos-marcas-png/gemu.png",
+
     // H
-    "HAIER", "HERBERT HANCHEN", "HOMA", "HYUNDAI", "HAWE Hydraulik", "HBC- RADIOMATIC INTERNATIONAL",
-    "HELUKABEL", "HEYPAC", "HILTI", "HONEYWELL", "HYDAC", "HYLOC", "Hansa-Flex", "HARTING",
-    "Hella", "HENGST-GEA Delbag GmbH", "HONSBERG", "Hilco - filter", "Hyosung",
+    "HONEYWELL": "https://rodavigo.net/datos/logos-marcas-png/honeywell.png",
+    "HYDAC": "https://rodavigo.net/datos/logos-marcas-png/hydac.png",
+    "HARTING": "https://rodavigo.net/datos/logos-marcas-png/harting.png",
+    "HILTI": "https://rodavigo.net/datos/logos-marcas-png/hilti.png",
+    "HAWE Hydraulik": "https://rodavigo.net/datos/logos-marcas-png/hawe.png",
+    "Hella": "https://rodavigo.net/datos/logos-marcas-png/hella.png",
+
     // I
-    "IGUS", "INA", "INFINITY", "INGERSOLL RAND", "ISB", "Italiana rele",
-    "I SQUARED R ELEMENT CO., INC", "Intensiv Filter Himenviro",
+    "IGUS": "https://rodavigo.net/datos/logos-marcas-png/igus.png",
+    "INA": "https://rodavigo.net/datos/logos-marcas-png/ina.png",
+    "INGERSOLL RAND": "https://rodavigo.net/datos/logos-marcas-png/ingersoll-rand.png",
+
     // J
-    "JAMES WALKER", "JCB", "JOVYATLAS GMBH",
+    "JCB": "https://rodavigo.net/datos/logos-marcas-png/jcb.png",
+
     // K
-    "KLOPPER THERM", "KROHNE", "KSB", "K-TON", "KTR", "KARL KLEIN", "KROMSCHRODER",
-    "KUBLER", "KUHNEZUG", "KUNKLE", "Kaeser", "KEMPE", "KEYENCE", "KOBO", "KFNGS",
-    "Kingda", "Kraus & Naimer", "KOLLMORGEN", "KOREA FLUID MACHINERY",
+    "KROHNE": "https://rodavigo.net/datos/logos-marcas-png/krohne.png",
+    "KSB": "https://rodavigo.net/datos/logos-marcas-png/ksb.png",
+    "KTR": "https://rodavigo.net/datos/logos-marcas-png/ktr.png",
+    "KEYENCE": "https://rodavigo.net/datos/logos-marcas-png/keyence.png",
+    "Kaeser": "https://rodavigo.net/datos/logos-marcas-png/kaeser.png",
+    "KUBLER": "https://rodavigo.net/datos/logos-marcas-png/kubler.png",
+    "KOLLMORGEN": "https://rodavigo.net/datos/logos-marcas-png/kollmorgen.png",
+    "KROMSCHRODER": "https://rodavigo.net/datos/logos-marcas-png/kromschroder.png",
+    "KUNKLE": "https://rodavigo.net/datos/logos-marcas-png/kunkle.png",
+    "Kraus & Naimer": "https://rodavigo.net/datos/logos-marcas-png/kraus-naimer.png",
     // L
-    "LUMBERG", "LEGRAND", "LIYANG GUFENGJI FACTORY", "LAIRD-CATTRON", "LESER", "LINTERN",
-    "LAIRD", "LINCOLN",
+    "LEGRAND": "https://rodavigo.net/datos/logos-marcas-png/legrand.png",
+    "LINCOLN": "https://rodavigo.net/datos/logos-marcas-png/lincoln.png",
+    "LUMBERG": "https://rodavigo.net/datos/logos-marcas-png/lumberg.png",
+
     // M
-    "METTLER TOLEDO", "MAINA ITALY", "MARTIN", "MAX AIR", "MECANINDUS", "MECFOR", "MAKITA",
-    "Mettler-Toledo", "MOXA", "MICHAEL RIEDEL", "Mitsubishi", "MOGENSEN", "MOLEX",
-    "MORGAN THERMAL", "MEAN WELL", "Meriam", "MERSEN", "MICHIELOTTO", "Molex", "MP FILTRI",
-    "MPM-MOLEX", "MENNEKES", "Metal work Co", "MECHATHERM", "MINIMAX", "MAGNALOY",
+    "METTLER TOLEDO": "https://rodavigo.net/datos/logos-marcas-png/mettler-toledo.png",
+    "Mettler-Toledo": "https://rodavigo.net/datos/logos-marcas-png/mettler-toledo.png",
+    "MOXA": "https://rodavigo.net/datos/logos-marcas-png/moxa.png",
+    "Mitsubishi": "https://rodavigo.net/datos/logos-marcas-png/mitsubishi.png",
+    "MEAN WELL": "https://rodavigo.net/datos/logos-marcas-png/mean-well.png",
+    "MENNEKES": "https://rodavigo.net/datos/logos-marcas-png/mennekes.png",
+    "MAKITA": "https://rodavigo.net/datos/logos-marcas-png/makita.png",
+    "MOLEX": "https://rodavigo.net/datos/logos-marcas-png/molex.png",
+    "Molex": "https://rodavigo.net/datos/logos-marcas-png/molex.png",
+    "MERSEN": "https://rodavigo.net/datos/logos-marcas-png/mersen.png",
+
     // N
-    "NSK", "Nord", "NORGREN", "NUCLEAR INDUSTRY", "MURR-ELEKTRONIK",
+    "NSK": "https://rodavigo.net/datos/logos-marcas-png/nsk-rhp.png",
+    "NORGREN": "https://rodavigo.net/datos/logos-marcas-png/imi-norgren.png",
+    "Nord": "https://rodavigo.net/datos/logos-marcas-png/nord.png",
+
     // O
-    "OHL INDUSTRIAL MINING",
+    "OMRON": "https://rodavigo.net/datos/logos-marcas-png/omron.png",
+
     // P
-    "Phoenix", "P+F", "Parker", "Parker-Kempe", "PAULSTRA", "PARKER", "PATOL LTD",
-    "PFANNENBERG", "POWERSCREEN", "PROSOFT TECHNOLOGIES", "PROTECTIVE COATING",
-    "Perma", "PILLAR INDUCTION", "Powerscreen", "PRO TECH VALVES", "Provo", "PILZ",
-    "PANAMETRICS INC", "PLATTCO",
+    "Phoenix": "https://rodavigo.net/datos/logos-marcas-png/phoenix.png",
+    "Parker": "https://rodavigo.net/datos/logos-marcas-png/parker.png",
+    "PARKER": "https://rodavigo.net/datos/logos-marcas-png/parker.png",
+    "PILZ": "https://rodavigo.net/datos/logos-marcas-png/pilz.png",
+    "P+F": "https://rodavigo.net/datos/logos-marcas-png/pepperl-fuchs.png",
+    "PFANNENBERG": "https://rodavigo.net/datos/logos-marcas-png/pfannenberg.png",
+
     // R
-    "REXROTH BOSCH", "RITTAL", "ROCKWELL", "ROSSEL MESSTECHNIK", "ROTEX", "RBL", "REID",
-    "Renold", "REX MATERIALS GROUP", "REXNORD", "RHP", "RENOLD", "RONMAS",
+    "REXROTH BOSCH": "https://rodavigo.net/datos/logos-marcas-png/rexroth-lineal.png",
+    "RITTAL": "https://rodavigo.net/datos/logos-marcas-png/rittal.png",
+    "ROCKWELL": "https://rodavigo.net/datos/logos-marcas-png/rockwell-automation.png",
+    "Renold": "https://rodavigo.net/datos/logos-marcas-png/renold.png",
+    "REXNORD": "https://rodavigo.net/datos/logos-marcas-png/rexnord.png",
+
     // S
-    "SUNON", "SAB BROCKSKES", "SCHNEIDER ELECTRIC", "SICK", "SKF", "SKM AIR CONDITIONING",
-    "SMC", "SQUARE D", "STAHL", "SUN HYDRAULICS", "SAFERACK", "SANDVIK", "Sang yong",
-    "SCHENCK INDUSTRIAL", "Schroedahl circor", "SEAL MASTER", "SEW", "SHIELD SPRAY",
-    "SHIJAZHUANG KINGDA PUMP INDUSTRY GROUP", "SHIN JIN BOLT CO.,LTD", "SPECTROMETER",
-    "STRUERS", "SWAGELOK", "SWIFT HEAT & CONTROL", "Sensor Electronic", "SHAKO",
-    "SHANGHAI", "SHIMADZU CORPORATION", "SIEMENS", "SOLER Y PALAU", "SSI", "SCHRACK", "SEAGATE",
+    "SCHNEIDER ELECTRIC": "https://rodavigo.net/datos/logos-marcas-png/schneider.png",
+    "SICK": "https://rodavigo.net/datos/logos-marcas-png/sick.png",
+    "SKF": "https://rodavigo.net/datos/logos-marcas-png/skf.png",
+    "SMC": "https://rodavigo.net/datos/logos-marcas-png/smc.png",
+    "SIEMENS": "https://rodavigo.net/datos/logos-marcas-png/siemens.png",
+    "SQUARE D": "https://rodavigo.net/datos/logos-marcas-png/square-d.png",
+    "STAHL": "https://rodavigo.net/datos/logos-marcas-png/stahl.png",
+    "SANDVIK": "https://rodavigo.net/datos/logos-marcas-png/sandvik.png",
+    "SEW": "https://rodavigo.net/datos/logos-marcas-png/sew-eurodrive.png",
+    "SWAGELOK": "https://rodavigo.net/datos/logos-marcas-png/swagelok.png",
+    "SCHRACK": "https://rodavigo.net/datos/logos-marcas-png/schrack.png",
+    "SOLER Y PALAU": "https://rodavigo.net/datos/logos-marcas-png/soler-palau.png",
+
     // T
-    "TAYAO", "TELEMECANIQUE", "TEMPORITI", "THERMAX", "THERMO KINETICS", "TLV CO. LTD",
-    "TRIAC", "TRICO", "TURCK", "THERMO FISHER", "THERMOPATCH", "TORK", "Trimble",
-    "TWIFLEX", "TECA", "TELCO", "TDK LAMBDA", "TRICONEX",
-    // U
-    "UD Truck", "UD TRUCKS", "UMETA", "UNISEARCH ASSOCIATES INC",
+    "TELEMECANIQUE": "https://rodavigo.net/datos/logos-marcas-png/telemecanique.png",
+    "TURCK": "https://rodavigo.net/datos/logos-marcas-png/turck.png",
+    "TDK LAMBDA": "https://rodavigo.net/datos/logos-marcas-png/tdk-lambda.png",
+    "TRICO": "https://rodavigo.net/datos/logos-marcas-png/trico.png",
+
     // V
-    "VIKING", "VOHOBOO CRANE", "VICINAY", "VIP AIR EMPOWERMENT", "VEGA", "VORWALD",
-    "VOSSIOH SCHWABE",
+    "VEGA": "https://rodavigo.net/datos/logos-marcas-png/vega.png",
+
     // W
-    "WAGO", "WEIDMULLER", "WEISHAUPT", "WHEELABRATOR", "WIKA", "WAM", "WANDFLUH",
-    "WESTERN DIGITAL COMPANY", "WIEDEMANN", "WUXI", "WILDEN PUMPS",
-    // X
-    "XI AN TECHFULL SIMO MOTOR CO LTD",
+    "WAGO": "https://rodavigo.net/datos/logos-marcas-png/wago.png",
+    "WEIDMULLER": "https://rodavigo.net/datos/logos-marcas-png/weidmuller.png",
+    "WIKA": "https://rodavigo.net/datos/logos-marcas-png/wika.png",
+    "WAM": "https://rodavigo.net/datos/logos-marcas-png/wam.png",
+
     // Y
-    "YASKAWA", "YOKOGAWA", "YANTAI TONGXING IND CO., LTD",
+    "YASKAWA": "https://rodavigo.net/datos/logos-marcas-png/yaskawa.png",
+    "YOKOGAWA": "https://rodavigo.net/datos/logos-marcas-png/yokogawa.png",
+
     // Z
-    "Zhangjiagang", "ZIEHL ABEGG",
-];
+    "ZIEHL ABEGG": "https://rodavigo.net/datos/logos-marcas-png/ziehl-abegg.png",
+};
+
+const allBrands: Brand[] = [
+    // A
+    { name: "ABB" }, { name: "ABICOR BINZEL" }, { name: "ABANAKI" }, { name: "AEROMECCANICA STRANICH SPA" }, { name: "AERZEN" }, { name: "AFFIX" },
+    { name: "ALLEN BRADLY" }, { name: "ALLEN TEL" }, { name: "ALLEN BRADLEY" }, { name: "AMPERES ELECTRONICS" }, { name: "ANAMET" },
+    { name: "AIR PRODUCTS AND CONTROL INC" }, { name: "APOLLO" }, { name: "APC" }, { name: "APT" }, { name: "ARCONIC CORPORATION" },
+    { name: "ARO" }, { name: "ARPEGE MASTER K" }, { name: "ASCO" }, { name: "ASHCROFT" }, { name: "AVID" },
+    // B
+    { name: "BARTEC" }, { name: "BDK VALVE" }, { name: "BAUMER" }, { name: "BLACK BOX" }, { name: "BONFIGLIOLI" }, { name: "BRADLEY LIFTING" },
+    { name: "BITZER" }, { name: "BUHLER" }, { name: "BUSSMAN" }, { name: "BENTLY NEVADA CORP" }, { name: "Balluff" }, { name: "Belt" }, { name: "BPW" },
+    { name: "Braid" }, { name: "Breco" }, { name: "BERNING-MASCHINENFABRIK" },
+    // C
+    { name: "CB CHINA CHANGSHA PUMP WORKS CO" }, { name: "CHINT" }, { name: "CINTEC HEAVY EQUIPMENT COMPANY" },
+    { name: "CEMBRE" }, { name: "CHANGSHA PUMP WORKS CO. LTD" }, { name: "CISCO" }, { name: "CMC PRO" }, { name: "CONDUCTIX WAMPFLER" },
+    { name: "CATERPILLAR" }, { name: "CONTRINEX" }, { name: "CRESSALL" }, { name: "COPELAND" }, { name: "CANFIELD" }, { name: "CAREL" }, { name: "CATTRON" },
+    { name: "CEFEM" }, { name: "COOPER BUSSMANN" },
+    // D
+    { name: "DANFOSS" }, { name: "DEUBLIN" }, { name: "Demag" }, { name: "DELTA" },
+    // E
+    { name: "EBNER" }, { name: "Eastern Transformers" }, { name: "ENDRESS+HAUSER" }, { name: "EMERSON" }, { name: "ENTRELEC" }, { name: "EBM-PAPST" }, { name: "EMG" },
+    // F
+    { name: "FERRAZ SHAWMUT" }, { name: "FME FANON" }, { name: "FRIGOR TECH" }, { name: "FEAM" }, { name: "FESTO" }, { name: "FAG" }, { name: "FARPOINTE DATA" },
+    { name: "Feldbinder" }, { name: "FIPNET" }, { name: "FLENDER" }, { name: "FLYGT" }, { name: "FMIC" }, { name: "FSQ" },
+    // G
+    { name: "GEDORE" }, { name: "GENERAL" }, { name: "GE" }, { name: "GIOVENZANA" }, { name: "GRUNDFOS" }, { name: "GARLOCK" }, { name: "GENERAL ELECTRIC" },
+    { name: "GENERAL MONITORS" }, { name: "GLAMA" }, { name: "GRAINGER" }, { name: "GREENLEE" }, { name: "Gali" }, { name: "GEMU" }, { name: "Grainger" },
+    // H
+    { name: "HAIER" }, { name: "HERBERT HANCHEN" }, { name: "HOMA" }, { name: "HYUNDAI" }, { name: "HAWE Hydraulik" }, { name: "HBC- RADIOMATIC INTERNATIONAL" },
+    { name: "HELUKABEL" }, { name: "HEYPAC" }, { name: "HILTI" }, { name: "HONEYWELL" }, { name: "HYDAC" }, { name: "HYLOC" }, { name: "Hansa-Flex" }, { name: "HARTING" },
+    { name: "Hella" }, { name: "HENGST-GEA Delbag GmbH" }, { name: "HONSBERG" }, { name: "Hilco - filter" }, { name: "Hyosung" },
+    // I
+    { name: "IGUS" }, { name: "INA" }, { name: "INFINITY" }, { name: "INGERSOLL RAND" }, { name: "ISB" }, { name: "Italiana rele" },
+    { name: "I SQUARED R ELEMENT CO., INC" }, { name: "Intensiv Filter Himenviro" },
+    // J
+    { name: "JAMES WALKER" }, { name: "JCB" }, { name: "JOVYATLAS GMBH" },
+    // K
+    { name: "KLOPPER THERM" }, { name: "KROHNE" }, { name: "KSB" }, { name: "K-TON" }, { name: "KTR" }, { name: "KARL KLEIN" }, { name: "KROMSCHRODER" },
+    { name: "KUBLER" }, { name: "KUHNEZUG" }, { name: "KUNKLE" }, { name: "Kaeser" }, { name: "KEMPE" }, { name: "KEYENCE" }, { name: "KOBO" }, { name: "KFNGS" },
+    { name: "Kingda" }, { name: "Kraus & Naimer" }, { name: "KOLLMORGEN" }, { name: "KOREA FLUID MACHINERY" },
+    // L
+    { name: "LUMBERG" }, { name: "LEGRAND" }, { name: "LIYANG GUFENGJI FACTORY" }, { name: "LAIRD-CATTRON" }, { name: "LESER" }, { name: "LINTERN" },
+    { name: "LAIRD" }, { name: "LINCOLN" },
+    // M
+    { name: "METTLER TOLEDO" }, { name: "MAINA ITALY" }, { name: "MARTIN" }, { name: "MAX AIR" }, { name: "MECANINDUS" }, { name: "MECFOR" }, { name: "MAKITA" },
+    { name: "Mettler-Toledo" }, { name: "MOXA" }, { name: "MICHAEL RIEDEL" }, { name: "Mitsubishi" }, { name: "MOGENSEN" }, { name: "MOLEX" },
+    { name: "MORGAN THERMAL" }, { name: "MEAN WELL" }, { name: "Meriam" }, { name: "MERSEN" }, { name: "MICHIELOTTO" }, { name: "Molex" }, { name: "MP FILTRI" },
+    { name: "MPM-MOLEX" }, { name: "MENNEKES" }, { name: "Metal work Co" }, { name: "MECHATHERM" }, { name: "MINIMAX" }, { name: "MAGNALOY" },
+    // N
+    { name: "NSK" }, { name: "Nord" }, { name: "NORGREN" }, { name: "NUCLEAR INDUSTRY" }, { name: "MURR-ELEKTRONIK" },
+    // O
+    { name: "OHL INDUSTRIAL MINING" },
+    // P
+    { name: "Phoenix" }, { name: "P+F" }, { name: "Parker" }, { name: "Parker-Kempe" }, { name: "PAULSTRA" }, { name: "PARKER" }, { name: "PATOL LTD" },
+    { name: "PFANNENBERG" }, { name: "POWERSCREEN" }, { name: "PROSOFT TECHNOLOGIES" }, { name: "PROTECTIVE COATING" },
+    { name: "Perma" }, { name: "PILLAR INDUCTION" }, { name: "Powerscreen" }, { name: "PRO TECH VALVES" }, { name: "Provo" }, { name: "PILZ" },
+    { name: "PANAMETRICS INC" }, { name: "PLATTCO" },
+    // R
+    { name: "REXROTH BOSCH" }, { name: "RITTAL" }, { name: "ROCKWELL" }, { name: "ROSSEL MESSTECHNIK" }, { name: "ROTEX" }, { name: "RBL" }, { name: "REID" },
+    { name: "Renold" }, { name: "REX MATERIALS GROUP" }, { name: "REXNORD" }, { name: "RHP" }, { name: "RENOLD" }, { name: "RONMAS" },
+    // S
+    { name: "SUNON" }, { name: "SAB BROCKSKES" }, { name: "SCHNEIDER ELECTRIC" }, { name: "SICK" }, { name: "SKF" }, { name: "SKM AIR CONDITIONING" },
+    { name: "SMC" }, { name: "SQUARE D" }, { name: "STAHL" }, { name: "SUN HYDRAULICS" }, { name: "SAFERACK" }, { name: "SANDVIK" }, { name: "Sang yong" },
+    { name: "SCHENCK INDUSTRIAL" }, { name: "Schroedahl circor" }, { name: "SEAL MASTER" }, { name: "SEW" }, { name: "SHIELD SPRAY" },
+    { name: "SHIJAZHUANG KINGDA PUMP INDUSTRY GROUP" }, { name: "SHIN JIN BOLT CO.,LTD" }, { name: "SPECTROMETER" },
+    { name: "STRUERS" }, { name: "SWAGELOK" }, { name: "SWIFT HEAT & CONTROL" }, { name: "Sensor Electronic" }, { name: "SHAKO" },
+    { name: "SHANGHAI" }, { name: "SHIMADZU CORPORATION" }, { name: "SIEMENS" }, { name: "SOLER Y PALAU" }, { name: "SSI" }, { name: "SCHRACK" }, { name: "SEAGATE" },
+    // T
+    { name: "TAYAO" }, { name: "TELEMECANIQUE" }, { name: "TEMPORITI" }, { name: "THERMAX" }, { name: "THERMO KINETICS" }, { name: "TLV CO. LTD" },
+    { name: "TRIAC" }, { name: "TRICO" }, { name: "TURCK" }, { name: "THERMO FISHER" }, { name: "THERMOPATCH" }, { name: "TORK" }, { name: "Trimble" },
+    { name: "TWIFLEX" }, { name: "TECA" }, { name: "TELCO" }, { name: "TDK LAMBDA" }, { name: "TRICONEX" },
+    // U
+    { name: "UD Truck" }, { name: "UD TRUCKS" }, { name: "UMETA" }, { name: "UNISEARCH ASSOCIATES INC" },
+    // V
+    { name: "VIKING" }, { name: "VOHOBOO CRANE" }, { name: "VICINAY" }, { name: "VIP AIR EMPOWERMENT" }, { name: "VEGA" }, { name: "VORWALD" },
+    { name: "VOSSIOH SCHWABE" },
+    // W
+    { name: "WAGO" }, { name: "WEIDMULLER" }, { name: "WEISHAUPT" }, { name: "WHEELABRATOR" }, { name: "WIKA" }, { name: "WAM" }, { name: "WANDFLUH" },
+    { name: "WESTERN DIGITAL COMPANY" }, { name: "WIEDEMANN" }, { name: "WUXI" }, { name: "WILDEN PUMPS" },
+    // X
+    { name: "XI AN TECHFULL SIMO MOTOR CO LTD" },
+    // Y
+    { name: "YASKAWA" }, { name: "YOKOGAWA" }, { name: "YANTAI TONGXING IND CO., LTD" },
+    // Z
+    { name: "Zhangjiagang" }, { name: "ZIEHL ABEGG" },
+].map(brand => ({
+    ...brand,
+    logo: brandLogos[brand.name]
+}));
 
 const alphabet = ["0-9", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+
+// Brand Card Component
+function BrandCard({ brand }: { brand: Brand }) {
+    const [imageError, setImageError] = useState(false);
+
+    return (
+        <div className="group flex items-center gap-4 p-4 bg-white rounded-lg border border-gray-200 hover:border-primary/50 hover:shadow-lg transition-all duration-300">
+            {/* Logo Container - Left Side */}
+            <div className="w-16 h-16 flex-shrink-0 flex items-center justify-center">
+                {brand.logo && !imageError ? (
+                    <Image
+                        src={brand.logo}
+                        alt={`${brand.name} logo`}
+                        width={64}
+                        height={64}
+                        className="max-w-full max-h-full object-contain group-hover:scale-125 transition-transform duration-300"
+                        unoptimized
+                        onError={() => setImageError(true)}
+                    />
+                ) : (
+                    <div className="w-2 h-2 rounded-full bg-gray-400 group-hover:bg-primary group-hover:scale-150 transition-all duration-300" />
+                )}
+            </div>
+
+            {/* Brand Name - Right Side */}
+            <span className="text-base text-gray-900 font-semibold flex-1">
+                {brand.name}
+            </span>
+        </div>
+    );
+}
 
 export default function BrandsPage() {
     const [selectedLetter, setSelectedLetter] = useState<string>("A");
 
     const getFilteredBrands = () => {
         if (selectedLetter === "0-9") {
-            return allBrands.filter((brand) => /^[0-9]/.test(brand));
+            return allBrands.filter((brand) => /^[0-9]/.test(brand.name));
         }
         return allBrands.filter((brand) =>
-            brand.toUpperCase().startsWith(selectedLetter)
-        ).sort((a, b) => a.localeCompare(b));
+            brand.name.toUpperCase().startsWith(selectedLetter)
+        ).sort((a, b) => a.name.localeCompare(b.name));
     };
 
     const filteredBrands = getFilteredBrands();
@@ -133,8 +338,8 @@ export default function BrandsPage() {
                                     key={letter}
                                     onClick={() => setSelectedLetter(letter)}
                                     className={`w-10 h-10 flex items-center justify-center rounded-md font-heading font-semibold text-sm transition-all duration-200 ${selectedLetter === letter
-                                            ? "bg-primary text-primary-foreground shadow-md"
-                                            : "bg-muted text-foreground hover:bg-primary/10"
+                                        ? "bg-primary text-primary-foreground shadow-md"
+                                        : "bg-muted text-foreground hover:bg-primary/10"
                                         }`}
                                 >
                                     {letter}
@@ -155,22 +360,10 @@ export default function BrandsPage() {
 
                     {/* Brands Grid */}
                     {filteredBrands.length > 0 ? (
-                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                            {filteredBrands.map((brand, index) => {
-                                const slug = brand.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
-
-                                return (
-                                    <div
-                                        key={`${brand}-${index}`}
-                                        className="group relative hover:z-20 flex items-center gap-6 p-4 bg-card rounded-lg border border-border hover:border-primary/30 hover:shadow-soft transition-all duration-200"
-                                    >
-                                        <div className="w-2 h-2 rounded-full bg-primary shrink-0" />
-                                        <span className="text-foreground group-hover:text-primary transition-colors font-medium">
-                                            {brand}
-                                        </span>
-                                    </div>
-                                );
-                            })}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                            {filteredBrands.map((brand, index) => (
+                                <BrandCard key={`${brand.name}-${index}`} brand={brand} />
+                            ))}
                         </div>
                     ) : (
                         <div className="text-center py-16">
