@@ -76,8 +76,8 @@ const Header = () => {
                                     key={link.path}
                                     href={link.path}
                                     className={`py-3 px-4 text-sm uppercase tracking-wider font-medium rounded-md transition-colors ${pathname === link.path
-                                            ? "bg-primary/10 text-primary"
-                                            : "hover:bg-muted"
+                                        ? "bg-primary/10 text-primary"
+                                        : "hover:bg-muted"
                                         }`}
                                     onClick={() => setIsMenuOpen(false)}
                                 >

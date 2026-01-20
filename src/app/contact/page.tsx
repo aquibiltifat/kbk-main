@@ -8,22 +8,22 @@ const contactInfo = [
     {
         icon: MapPin,
         title: "Our Office",
-        details: ["India"],
+        details: ["Lucknow - 226003, UP India"],
     },
     {
         icon: Phone,
         title: "Phone Number",
-        details: ["+91 98765 43210"],
+        details: ["+91 9305605160"],
     },
     {
         icon: Mail,
         title: "Email Address",
-        details: ["info@kbksourcing.com"],
+        details: ["sales@kbksspl.com"],
     },
     {
         icon: Globe,
         title: "Website",
-        details: ["www.kbksourcing.com"],
+        details: ["www.kbksspl.com"],
     },
 ];
 
@@ -173,7 +173,7 @@ export default function ContactPage() {
                                                 type="tel"
                                                 value={formData.phone}
                                                 onChange={handleChange}
-                                                placeholder="+91 98765 43210"
+                                                placeholder="+91 9305605160"
                                                 className="w-full h-12 px-4 rounded-md border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
                                             />
                                         </div>

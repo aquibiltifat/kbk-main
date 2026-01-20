@@ -51,7 +51,7 @@ const heroSlides = [
   },
   {
     image: "/images/hero-slide-3.png",
-    title: "Seamless Global Logistics & Supply Chain",
+    title: "Worldwide Delivery & Supply Chain Excellence",
     subtitle: "End-to-end logistics support ensuring your goods reach any corner of the globe safely and on time.",
   },
 ];
@@ -101,20 +101,23 @@ export default function HomePage() {
                 <p className="text-lg md:text-xl text-gray-200 mb-8 leading-relaxed max-w-2xl">
                   {slide.subtitle}
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <Link
-                    href="/contact"
-                    className="inline-flex items-center justify-center bg-primary hover:bg-primary/90 text-white border-none text-lg h-14 px-8 rounded-md transition-all duration-300 shadow-lg hover:translate-y-[-2px]"
-                  >
-                    Contact Us
-                  </Link>
-                  <Link
-                    href="/services"
-                    className="inline-flex items-center justify-center text-white border border-white hover:bg-white/20 text-lg h-14 px-8 rounded-md backdrop-blur-sm transition-all duration-300"
-                  >
-                    Our Services
-                  </Link>
-                </div>
+                {/* Only show buttons on first slide */}
+                {index === 0 && (
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <Link
+                      href="/contact"
+                      className="inline-flex items-center justify-center bg-primary hover:bg-primary/90 text-white border-none text-lg h-14 px-8 rounded-md transition-all duration-300 shadow-lg hover:translate-y-[-2px]"
+                    >
+                      Contact Us
+                    </Link>
+                    <Link
+                      href="/services"
+                      className="inline-flex items-center justify-center text-white border border-white hover:bg-white/20 text-lg h-14 px-8 rounded-md backdrop-blur-sm transition-all duration-300"
+                    >
+                      Our Services
+                    </Link>
+                  </div>
+                )}
               </div>
             </div>
           </div>
