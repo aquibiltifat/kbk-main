@@ -15,6 +15,7 @@ const brandLogos: Record<string, string> = {
     "ABB": "https://rodavigo.net/datos/logos-marcas-png/abb.png",
     "ABICOR BINZEL": "https://rodavigo.net/datos/logos-marcas-png/abicor-binzel.png",
     "ABANAKI": "https://rodavigo.net/datos/logos-marcas-png/abanaki.png",
+    "ALLEN TEL": "/images/allen-tel-logo.png",
     "ALLEN BRADLEY": "https://rodavigo.net/datos/logos-marcas-png/allen-bradley.png",
     "ALLEN BRADLY": "https://rodavigo.net/datos/logos-marcas-png/allen-bradley.png",
     "APC": "https://rodavigo.net/datos/logos-marcas-png/apc.png",

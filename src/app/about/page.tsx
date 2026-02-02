@@ -32,8 +32,20 @@ export default function AboutPage() {
     return (
         <Layout>
             {/* Hero Section */}
-            <section className="relative bg-primary py-20 md:py-28">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary to-olive-dark" />
+            <section className="relative bg-primary py-20 md:py-28 overflow-hidden">
+                {/* Background Image */}
+                <div className="absolute inset-0">
+                    <Image
+                        src="/images/mission-team-collaboration.png"
+                        alt="Team Collaboration"
+                        fill
+                        className="object-cover"
+                        priority
+                    />
+                </div>
+                {/* Green Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/95 via-primary/90 to-olive-dark/95" />
+
                 <div className="container-custom relative z-10">
                     <div className="max-w-3xl animate-slide-up">
                         <h1 className="text-4xl md:text-5xl font-heading font-bold text-primary-foreground mb-6">

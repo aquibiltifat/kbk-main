@@ -36,7 +36,7 @@ const industries = [
 ];
 
 const products = [
-    { name: "Industrial Equipment", description: "Pumps, compressors, motors, valves, and machinery", icon: Factory },
+    { name: "Industrial Equipment", description: "Air compressor, boiler, generator, transformer, diesel engine, chillers, forklift", icon: Factory },
     { name: "Mechanical Spares", description: "Bearings, gears, shafts, and couplings", icon: Settings },
     { name: "Electrical & Electronics", description: "Motors, circuit breakers, switches, sensors, and automation components", icon: Zap },
     { name: "Instrumentation Spares", description: "Pressure gauges, flow meters, control panels, and calibration tools", icon: Gauge },
