@@ -58,7 +58,7 @@ export default function WhatWeDoSection() {
                         <div className="bg-muted/30 rounded-lg p-6 hover:shadow-lg transition-all duration-300 hover:bg-muted/50">
                             <div className="w-20 h-20 mb-4 mx-auto">
                                 <Image
-                                    src="/images/tool-valve.png"
+                                    src="/images/air-compressor.png"
                                     alt="Industrial Equipment"
                                     width={80}
                                     height={80}
@@ -66,7 +66,7 @@ export default function WhatWeDoSection() {
                                 />
                             </div>
                             <h4 className="text-lg font-heading font-semibold text-foreground mb-2">Industrial Equipment</h4>
-                            <p className="text-sm text-muted-foreground">Pumps, compressors, motors, valves, and machinery</p>
+                            <p className="text-sm text-muted-foreground">Air compressor, boiler, generator, transformer, diesel engine, chillers, forklift</p>
                         </div>
 
                         {/* Card 2 */}
@@ -88,7 +88,7 @@ export default function WhatWeDoSection() {
                         <div className="bg-muted/30 rounded-lg p-6 hover:shadow-lg transition-all duration-300 hover:bg-muted/50">
                             <div className="w-20 h-20 mb-4 mx-auto">
                                 <Image
-                                    src="/images/tool-drill.png"
+                                    src="/images/electrical-spares.png"
                                     alt="Electrical & Electronics"
                                     width={80}
                                     height={80}
