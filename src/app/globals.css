@@ -3,7 +3,7 @@
 
 /* Tailwind 4 Theme Configuration */
 @theme {
-  --font-heading: 'Montserrat', sans-serif;
+  --font-heading: 'Times New Roman', serif;
   --font-body: 'Open Sans', sans-serif;
 
   /* Light mode colors */
