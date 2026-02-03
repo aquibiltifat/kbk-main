@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { Target, Eye, Heart, Shield, Users, Award, CheckCircle } from "lucide-react";
+import { Target, Eye, Shield, CheckCircle } from "lucide-react";
 import Layout from "@/components/layout/Layout";
+import ValuesDiagram from "@/components/about/ValuesDiagram";
 
 export const metadata: Metadata = {
     title: "About Us | Best Factory Service Company in India",
@@ -19,14 +20,6 @@ export const metadata: Metadata = {
         images: ["/images/about-image.png"],
     },
 };
-
-const values = [
-    { icon: Heart, title: "Empowerment", description: "Encouraging ownership, accountability, and innovation" },
-    { icon: Users, title: "Flexibility", description: "Adapting swiftly to market dynamics and client needs" },
-    { icon: Users, title: "Collaboration", description: "Working as one team with clients, partners, and stakeholders" },
-    { icon: Award, title: "Recognition", description: "Valuing performance, dedication, and excellence" },
-    { icon: Shield, title: "Respect", description: "Upholding dignity, diversity, and ethical conduct" },
-];
 
 export default function AboutPage() {
     return (
@@ -182,7 +175,7 @@ export default function AboutPage() {
             </section>
 
             {/* Core Values */}
-            <section className="section-padding bg-background">
+            <section className="section-padding bg-background overflow-hidden relative">
                 <div className="container-custom">
                     <div className="text-center max-w-2xl mx-auto mb-16">
                         <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-4">
@@ -193,25 +186,7 @@ export default function AboutPage() {
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {values.map((value, index) => (
-                            <div
-                                key={value.title}
-                                className="group p-6 bg-card rounded-xl border border-border text-center card-hover"
-                                style={{ animationDelay: `${index * 100}ms` }}
-                            >
-                                <div className="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-primary transition-colors duration-300">
-                                    <value.icon className="w-7 h-7 text-primary group-hover:text-primary-foreground transition-colors duration-300" />
-                                </div>
-                                <h3 className="text-lg font-heading font-semibold text-foreground mb-2">
-                                    {value.title}
-                                </h3>
-                                <p className="text-sm text-muted-foreground">
-                                    {value.description}
-                                </p>
-                            </div>
-                        ))}
-                    </div>
+                    <ValuesDiagram />
                 </div>
             </section>
 

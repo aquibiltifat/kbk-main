@@ -1,29 +1,41 @@
 "use client";
 
 import { useState } from "react";
-import { MapPin, Phone, Mail, Globe, Send, CheckCircle } from "lucide-react";
+import { Send, CheckCircle } from "lucide-react";
+import Image from "next/image";
 import Layout from "@/components/layout/Layout";
 
 const contactInfo = [
     {
-        icon: MapPin,
+        icon: "/images/icon-location.png",
         title: "Our Office",
         details: ["Lucknow - 226003, UP India"],
+        link: "https://www.google.com/maps/search/?api=1&query=Lucknow+226003+UP+India"
     },
     {
-        icon: Phone,
+        icon: "/images/icon-phone.png",
         title: "Phone Number",
         details: ["+91 9305605160"],
+        link: "tel:+919305605160"
     },
     {
-        icon: Mail,
+        icon: "/images/icon-email.png",
         title: "Email Address",
         details: ["sales@kbksspl.com"],
+        link: "mailto:sales@kbksspl.com"
     },
     {
-        icon: Globe,
+        icon: "/images/icon-globe.png",
         title: "Website",
         details: ["www.kbksspl.com"],
+        link: "https://www.kbksspl.com"
+    },
+    {
+        isSocial: true,
+        socialLogo: "/images/instagram-logo-colorful.png",
+        title: "Instagram",
+        details: ["@kbk_sourcing_services_pvt_ltd"],
+        link: "https://www.instagram.com/kbk_sourcing_services_pvt_ltd?utm_source=qr&igsh=NWdoN2pmY203bnp0"
     },
 ];
 
@@ -95,17 +107,45 @@ export default function ContactPage() {
                             <div className="space-y-6">
                                 {contactInfo.map((info) => (
                                     <div key={info.title} className="flex items-start gap-4">
-                                        <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center shrink-0">
-                                            <info.icon className="w-6 h-6 text-primary" />
+                                        <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center shrink-0 overflow-hidden">
+                                            {info.isSocial && info.socialLogo ? (
+                                                <Image
+                                                    src={info.socialLogo}
+                                                    alt={info.title}
+                                                    width={24}
+                                                    height={24}
+                                                    className="object-contain"
+                                                />
+                                            ) : (
+                                                <Image
+                                                    src={info.icon as string}
+                                                    alt={info.title}
+                                                    width={24}
+                                                    height={24}
+                                                    className="object-contain"
+                                                />
+                                            )}
                                         </div>
                                         <div>
                                             <h3 className="font-heading font-semibold text-foreground mb-1">
                                                 {info.title}
                                             </h3>
                                             {info.details.map((detail) => (
-                                                <p key={detail} className="text-muted-foreground text-sm">
-                                                    {detail}
-                                                </p>
+                                                info.link ? (
+                                                    <a
+                                                        key={detail}
+                                                        href={info.link}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        className="text-primary hover:underline text-sm block"
+                                                    >
+                                                        {detail}
+                                                    </a>
+                                                ) : (
+                                                    <p key={detail} className="text-muted-foreground text-sm">
+                                                        {detail}
+                                                    </p>
+                                                )
                                             ))}
                                         </div>
                                     </div>
