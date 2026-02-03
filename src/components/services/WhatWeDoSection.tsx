@@ -118,7 +118,7 @@ export default function WhatWeDoSection() {
                         <div className="bg-muted/30 rounded-lg p-6 hover:shadow-lg transition-all duration-300 hover:bg-muted/50">
                             <div className="w-20 h-20 mb-4 mx-auto">
                                 <Image
-                                    src="/images/product-bearing.png"
+                                    src="/images/product-safety.png"
                                     alt="Safety Supplies"
                                     width={80}
                                     height={80}
@@ -130,14 +130,14 @@ export default function WhatWeDoSection() {
                         </div>
 
                         {/* Card 6 */}
-                        <div className="bg-muted/30 rounded-lg p-6 hover:shadow-lg transition-all duration-300 hover:bg-muted/50">
-                            <div className="w-20 h-20 mb-4 mx-auto">
+                        <div className="bg-muted/30 rounded-lg p-6 hover:shadow-lg transition-all duration-300 hover:bg-muted/50 text-center">
+                            <div className="w-28 h-28 mb-4 mx-auto">
                                 <Image
-                                    src="/images/tool-wrench.png"
+                                    src="/images/product-fabricated.png"
                                     alt="Fabricated Parts"
-                                    width={80}
-                                    height={80}
-                                    className="object-contain"
+                                    width={112}
+                                    height={112}
+                                    className="object-contain w-full h-full"
                                 />
                             </div>
                             <h4 className="text-lg font-heading font-semibold text-foreground mb-2">Fabricated Spare Parts</h4>
@@ -148,7 +148,7 @@ export default function WhatWeDoSection() {
                         <div className="bg-muted/30 rounded-lg p-6 hover:shadow-lg transition-all duration-300 hover:bg-muted/50">
                             <div className="w-20 h-20 mb-4 mx-auto">
                                 <Image
-                                    src="/images/product-piston.png"
+                                    src="/images/product-steel.png"
                                     alt="Steel Structures"
                                     width={80}
                                     height={80}
@@ -178,7 +178,7 @@ export default function WhatWeDoSection() {
                         <div className="bg-muted/30 rounded-lg p-6 hover:shadow-lg transition-all duration-300 hover:bg-muted/50">
                             <div className="w-20 h-20 mb-4 mx-auto">
                                 <Image
-                                    src="/images/product-gear.png"
+                                    src="/images/product-raw-materials.png"
                                     alt="Raw Materials"
                                     width={80}
                                     height={80}
