@@ -8,15 +8,15 @@ const Footer = () => {
             <div className="container-custom py-16">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
                     {/* Company Info */}
-                    <div className="space-y-4">
+                    <div className="space-y-0">
                         <Image
-                            src="/images/logo-new.png"
+                            src="/images/kbk-logo-full.png"
                             alt="KBK Sourcing Services"
-                            width={160}
-                            height={64}
-                            className="h-16 w-auto object-contain bg-background p-2 rounded-md"
+                            width={180}
+                            height={180}
+                            className="h-40 w-auto object-contain pb-0 rounded-md"
                         />
-                        <p className="text-primary-foreground/80 text-sm leading-relaxed">
+                        <p className="text-primary-foreground/80 text-sm leading-relaxed top-0">
                             A professionally managed global trading and industrial sourcing organization delivering high-quality materials and reliable supply solutions worldwide.
                         </p>
                     </div>
