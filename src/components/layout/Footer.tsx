@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { MapPin, Phone, Mail, Globe } from "lucide-react";
+
 
 const Footer = () => {
     return (
@@ -61,24 +61,45 @@ const Footer = () => {
                         <h4 className="font-heading font-bold text-lg">Contact Us</h4>
                         <ul className="space-y-3">
                             <li className="flex items-start gap-3 text-sm text-primary-foreground/80">
-                                <MapPin size={18} className="shrink-0 mt-0.5" />
-                                <span>India</span>
-                            </li>
-                            <li className="flex items-center gap-3 text-sm text-primary-foreground/80">
-                                <Phone size={18} className="shrink-0" />
-                                <a href="tel:+919876543210" className="hover:text-primary-foreground transition-colors">
-                                    +91 98765 43210
+                                <Image src="/images/icon-location.png" alt="Location" width={18} height={18} className="shrink-0 mt-0.5 object-contain" />
+                                <a href="https://www.google.com/maps/search/?api=1&query=Lucknow+226003+UP+India" target="_blank" rel="noopener noreferrer" className="hover:text-primary-foreground transition-colors">
+                                    Lucknow - 226003, UP India
                                 </a>
                             </li>
                             <li className="flex items-center gap-3 text-sm text-primary-foreground/80">
-                                <Mail size={18} className="shrink-0" />
-                                <a href="mailto:info@kbksourcing.com" className="hover:text-primary-foreground transition-colors">
-                                    info@kbksourcing.com
+                                <Image src="/images/icon-phone.png" alt="Phone" width={18} height={18} className="shrink-0 object-contain" />
+                                <a href="tel:+919305605160" className="hover:text-primary-foreground transition-colors">
+                                    +91 9305605160
                                 </a>
                             </li>
                             <li className="flex items-center gap-3 text-sm text-primary-foreground/80">
-                                <Globe size={18} className="shrink-0" />
-                                <span>www.kbksourcing.com</span>
+                                <Image src="/images/icon-email.png" alt="Email" width={18} height={18} className="shrink-0 object-contain" />
+                                <a href="mailto:sales@kbksspl.com" className="hover:text-primary-foreground transition-colors">
+                                    sales@kbksspl.com
+                                </a>
+                            </li>
+                            <li className="flex items-center gap-3 text-sm text-primary-foreground/80">
+                                <Image src="/images/icon-globe.png" alt="Website" width={18} height={18} className="shrink-0 object-contain" />
+                                <a href="https://www.kbksspl.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary-foreground transition-colors">
+                                    www.kbksspl.com
+                                </a>
+                            </li>
+                            <li className="flex items-center gap-3 text-sm text-primary-foreground/80 pt-2">
+                                <Image
+                                    src="/images/instagram-logo-colorful.png"
+                                    alt="Instagram"
+                                    width={18}
+                                    height={18}
+                                    className="shrink-0"
+                                />
+                                <a
+                                    href="https://www.instagram.com/kbk_sourcing_services_pvt_ltd?utm_source=qr&igsh=NWdoN2pmY203bnp0"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="hover:text-primary-foreground transition-colors"
+                                >
+                                    kbk_sourcing_services_pvt_ltd
+                                </a>
                             </li>
                         </ul>
                     </div>

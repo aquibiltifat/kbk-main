@@ -3,36 +3,36 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, Globe, Shield, Truck, Users, CheckCircle, Factory, Wrench } from "lucide-react";
+import { ArrowRight, Globe, CheckCircle } from "lucide-react";
 import Layout from "@/components/layout/Layout";
 
 const industries = [
-  { name: "Oil & Gas", icon: Factory },
-  { name: "Petrochemical", icon: Factory },
-  { name: "Mining & Metals", icon: Wrench },
-  { name: "Pharmaceuticals", icon: Shield },
-  { name: "Construction & EPC", icon: Factory },
-  { name: "Overseas Trading", icon: Globe },
+  { name: "Oil & Gas", image: "/images/industries/oil-gas.png" },
+  { name: "Petrochemical", image: "/images/industries/petrochemical.png" },
+  { name: "Mining & Metals", image: "/images/industries/mining-metals.png" },
+  { name: "Pharmaceuticals", image: "/images/industries/pharmaceuticals.png" },
+  { name: "Construction & EPC", image: "/images/industries/construction-epc.png" },
+  { name: "Overseas Trading", image: "/images/industries/overseas-trading.png" },
 ];
 
 const features = [
   {
-    icon: Globe,
+    image: "/images/features/global-sourcing.png",
     title: "Global Sourcing",
     description: "Access to a worldwide network of trusted manufacturers and suppliers.",
   },
   {
-    icon: Shield,
+    image: "/images/features/quality-assurance.png",
     title: "Quality Assurance",
     description: "Every product meets stringent international quality standards.",
   },
   {
-    icon: Truck,
+    image: "/images/features/timely-delivery.png",
     title: "Timely Delivery",
     description: "Reliable logistics ensuring on-time delivery worldwide.",
   },
   {
-    icon: Users,
+    image: "/images/features/expert-support.png",
     title: "Expert Support",
     description: "Dedicated team with deep industry knowledge and expertise.",
   },
@@ -51,7 +51,7 @@ const heroSlides = [
   },
   {
     image: "/images/hero-slide-3.png",
-    title: "Seamless Global Logistics & Supply Chain",
+    title: "Worldwide Delivery & Supply Chain Excellence",
     subtitle: "End-to-end logistics support ensuring your goods reach any corner of the globe safely and on time.",
   },
 ];
@@ -101,20 +101,23 @@ export default function HomePage() {
                 <p className="text-lg md:text-xl text-gray-200 mb-8 leading-relaxed max-w-2xl">
                   {slide.subtitle}
                 </p>
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <Link
-                    href="/contact"
-                    className="inline-flex items-center justify-center bg-primary hover:bg-primary/90 text-white border-none text-lg h-14 px-8 rounded-md transition-all duration-300 shadow-lg hover:translate-y-[-2px]"
-                  >
-                    Contact Us
-                  </Link>
-                  <Link
-                    href="/services"
-                    className="inline-flex items-center justify-center text-white border border-white hover:bg-white/20 text-lg h-14 px-8 rounded-md backdrop-blur-sm transition-all duration-300"
-                  >
-                    Our Services
-                  </Link>
-                </div>
+                {/* Only show buttons on first slide */}
+                {index === 0 && (
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <Link
+                      href="/contact"
+                      className="inline-flex items-center justify-center bg-primary hover:bg-primary/90 text-white border-none text-lg h-14 px-8 rounded-md transition-all duration-300 shadow-lg hover:translate-y-[-2px]"
+                    >
+                      Contact Us
+                    </Link>
+                    <Link
+                      href="/services"
+                      className="inline-flex items-center justify-center text-white border border-white hover:bg-white/20 text-lg h-14 px-8 rounded-md backdrop-blur-sm transition-all duration-300"
+                    >
+                      Our Services
+                    </Link>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -153,8 +156,13 @@ export default function HomePage() {
                 className="group p-6 bg-card rounded-xl border border-border shadow-soft card-hover"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <div className="w-14 h-14 bg-primary/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
-                  <feature.icon className="w-7 h-7 text-primary group-hover:text-primary-foreground transition-colors duration-300" />
+                <div className="relative w-full h-32 mb-4 overflow-hidden rounded-lg">
+                  <Image
+                    src={feature.image}
+                    alt={feature.title}
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
                 </div>
                 <h3 className="text-lg font-heading font-semibold text-foreground mb-2">
                   {feature.title}
@@ -184,9 +192,16 @@ export default function HomePage() {
             {industries.map((industry) => (
               <div
                 key={industry.name}
-                className="group p-6 bg-card rounded-xl border border-border text-center card-hover"
+                className="group p-4 bg-card rounded-xl border border-border text-center card-hover flex flex-col items-center"
               >
-                <industry.icon className="w-10 h-10 text-primary mx-auto mb-3 group-hover:scale-110 transition-transform duration-300" />
+                <div className="relative w-full aspect-square mb-4 overflow-hidden rounded-lg">
+                  <Image
+                    src={industry.image}
+                    alt={industry.name}
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                </div>
                 <h3 className="text-sm font-heading font-semibold text-foreground">
                   {industry.name}
                 </h3>
