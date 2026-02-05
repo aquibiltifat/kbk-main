@@ -30,14 +30,14 @@ const Header = () => {
                                 alt="KBK Symbol"
                                 width={100}
                                 height={100}
-                                className="h-12 sm:h-16 lg:h-20 w-auto object-contain shrink-0 transition-transform duration-300 group-hover:scale-105"
+                                className="h-12 sm:h-16 lg:h-32 w-auto object-contain shrink-0 transition-transform duration-300 group-hover:scale-105"
                                 priority
                             />
                             <div className="flex flex-col items-start min-w-0">
                                 <h1 className="text-sm sm:text-lg lg:text-2xl font-heading font-bold text-foreground tracking-tight group-hover:text-primary transition-colors whitespace-nowrap">
                                     KBK
                                 </h1>
-                                <p className="text-xs sm:text-sm lg:text-lg font-heading font-bold text-foreground tracking-tight group-hover:text-primary transition-colors whitespace-nowrap truncate">
+                                <p className="text-sm sm:text-lg lg:text-2xl font-heading font-bold text-foreground tracking-tight group-hover:text-primary transition-colors whitespace-nowrap truncate">
                                     Sourcing Services Pvt. Ltd.
                                 </p>
                             </div>
