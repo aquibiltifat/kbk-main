@@ -10,7 +10,7 @@ const Footer = () => {
                     {/* Company Info */}
                     <div className="space-y-0">
                         <Image
-                            src="/images/kbk-logo-full.png"
+                            src="/images/kbk-logo-white.png"
                             alt="KBK Sourcing Services"
                             width={180}
                             height={180}
