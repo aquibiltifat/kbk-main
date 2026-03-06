@@ -14,9 +14,9 @@ const Footer = () => {
                             alt="KBK Sourcing Services"
                             width={180}
                             height={180}
-                            className="h-40 w-auto object-contain pb-0 rounded-md"
+                            className="h-60 px-0 py-0 w-auto object-contain pb-0 rounded-md"
                         />
-                        <p className="text-primary-foreground/80 text-sm leading-relaxed top-0">
+                        <p className="text-primary-foreground/80 text-sm leading-relaxed top-0 pt-0">
                             A professionally managed global trading and industrial sourcing organization delivering high-quality materials and reliable supply solutions worldwide.
                         </p>
                     </div>
