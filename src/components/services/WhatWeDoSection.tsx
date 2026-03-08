@@ -80,7 +80,7 @@ export default function WhatWeDoSection() {
                         <div className="gsap-card bg-muted/30 rounded-lg p-6 hover:shadow-lg transition-all duration-300 hover:bg-muted/50">
                             <div className="w-20 h-20 mb-4 mx-auto">
                                 <Image
-                                    src="/images/product-gear.png"
+                                    src="/images/mechanical-spares-ultimate.png"
                                     alt="Mechanical Spares"
                                     width={80}
                                     height={80}

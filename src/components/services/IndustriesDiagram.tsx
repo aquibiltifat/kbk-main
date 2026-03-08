@@ -79,10 +79,10 @@ const IndustriesDiagram = () => {
             <div className="hidden lg:block relative h-[800px] w-full mt-10">
                 {/* Central Hub */}
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
-                    <div className="w-56 h-56 rounded-full bg-white flex items-center justify-center border-8 border-primary shadow-glow overflow-hidden">
+                    <div className="w-64 h-64 rounded-full border-[8px] border-black bg-white flex items-center justify-center ring-8 ring-black">
                         <div className="text-center p-4">
-                            <span className="text-primary font-heading font-bold text-xl block">INDUSTRIES</span>
-                            <span className="text-muted-foreground text-sm font-medium">WE SERVE</span>
+                            <span className="text-primary font-heading font-bold text-3xl block tracking-tight">INDUSTRIES</span>
+                            <span className="text-muted-foreground text-sm font-medium uppercase tracking-[0.2em] mt-1 block">WE SERVE</span>
                         </div>
                     </div>
                 </div>
@@ -143,25 +143,38 @@ const IndustriesDiagram = () => {
                 })}
             </div>
 
-            {/* Mobile/Tablet Layout (Grid) */}
-            <div className="lg:hidden grid md:grid-cols-2 gap-8">
-                {industries.map((ind) => (
-                    <div key={ind.name} className={`relative rounded-2xl border-2 bg-white ${ind.borderColor} shadow-md overflow-hidden`}>
-                        <div className="relative h-48 w-full">
-                            <Image
-                                src={ind.image}
-                                alt={ind.name}
-                                fill
-                                className="object-cover"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                            <h3 className="absolute bottom-4 left-6 text-xl font-heading font-bold text-white">{ind.name}</h3>
-                        </div>
-                        <div className="p-6">
-                            <p className="text-sm text-muted-foreground leading-relaxed">{ind.description}</p>
+            {/* Mobile/Tablet Layout (Grid with Central Hub) */}
+            <div className="lg:hidden">
+                {/* Central Hub for Mobile */}
+                <div className="flex justify-center mb-10">
+                    <div className="w-48 h-48 rounded-full border-[6px] border-black bg-white flex items-center justify-center ring-8 ring-black">
+                        <div className="text-center p-4">
+                            <span className="text-primary font-heading font-bold text-xl block tracking-tight">INDUSTRIES</span>
+                            <span className="text-muted-foreground text-xs font-medium uppercase tracking-[0.2em] mt-1 block">WE SERVE</span>
                         </div>
                     </div>
-                ))}
+                </div>
+
+                {/* Industry Cards Grid */}
+                <div className="grid sm:grid-cols-2 gap-6">
+                    {industries.map((ind) => (
+                        <div key={ind.name} className={`relative rounded-2xl border-2 bg-white ${ind.borderColor} shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1`}>
+                            <div className="relative h-40 w-full">
+                                <Image
+                                    src={ind.image}
+                                    alt={ind.name}
+                                    fill
+                                    className="object-cover"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                                <h3 className="absolute bottom-3 left-4 text-lg font-heading font-bold text-white">{ind.name}</h3>
+                            </div>
+                            <div className="p-4">
+                                <p className="text-xs text-muted-foreground leading-relaxed">{ind.description}</p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
             </div>
         </div>
     );
