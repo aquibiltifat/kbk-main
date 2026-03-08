@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Globe, CheckCircle } from "lucide-react";
 import Layout from "@/components/layout/Layout";
+import { useGSAPScrollAnimation, useGSAPFadeIn } from "@/hooks/useGSAPScrollAnimation";
 
 const industries = [
   { name: "Oil & Gas", image: "/images/industries/oil-gas.png" },
@@ -58,6 +59,20 @@ const heroSlides = [
 
 export default function HomePage() {
   const [currentSlide, setCurrentSlide] = useState(0);
+
+  // GSAP scroll animation refs
+  const featuresRef = useGSAPScrollAnimation<HTMLDivElement>({
+    y: 80,
+    stagger: 0.12,
+    duration: 0.7
+  });
+  const industriesRef = useGSAPScrollAnimation<HTMLDivElement>({
+    y: 60,
+    scale: 0.95,
+    stagger: 0.08,
+    duration: 0.6
+  });
+  const aboutRef = useGSAPFadeIn<HTMLDivElement>({ y: 50, duration: 0.9 });
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -149,12 +164,11 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {features.map((feature, index) => (
+          <div ref={featuresRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {features.map((feature) => (
               <div
                 key={feature.title}
-                className="group p-6 bg-card rounded-xl border border-border shadow-soft card-hover"
-                style={{ animationDelay: `${index * 100}ms` }}
+                className="gsap-card group p-6 bg-card rounded-xl border border-border shadow-soft card-hover"
               >
                 <div className="relative w-full h-32 mb-4 overflow-hidden rounded-lg">
                   <Image
@@ -188,11 +202,11 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          <div ref={industriesRef} className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
             {industries.map((industry) => (
               <div
                 key={industry.name}
-                className="group p-4 bg-card rounded-xl border border-border text-center card-hover flex flex-col items-center"
+                className="gsap-card group p-4 bg-card rounded-xl border border-border text-center card-hover flex flex-col items-center"
               >
                 <div className="relative w-full aspect-square mb-4 overflow-hidden rounded-lg">
                   <Image
@@ -214,7 +228,7 @@ export default function HomePage() {
       {/* About Preview */}
       <section className="section-padding bg-background">
         <div className="container-custom">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div ref={aboutRef} className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground mb-6">
                 A Global Trading & <span className="text-primary">Sourcing Partner</span>

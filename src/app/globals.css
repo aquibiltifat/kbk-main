@@ -3,7 +3,7 @@
 
 /* Tailwind 4 Theme Configuration */
 @theme {
-  --font-heading: 'Montserrat', sans-serif;
+  --font-heading: 'Times New Roman', serif;
   --font-body: 'Open Sans', sans-serif;
 
   /* Light mode colors */
@@ -166,6 +166,12 @@
 /* Base layer */
 * {
   border-color: var(--color-border);
+}
+
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100vw;
 }
 
 body {

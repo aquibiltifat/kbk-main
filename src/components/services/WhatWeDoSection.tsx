@@ -2,9 +2,16 @@
 
 import Image from "next/image";
 import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
+import { useGSAPScrollAnimation } from "@/hooks/useGSAPScrollAnimation";
 
 export default function WhatWeDoSection() {
     const [ref, isVisible] = useIntersectionObserver({ threshold: 0.1 });
+    const cardsRef = useGSAPScrollAnimation<HTMLDivElement>({
+        y: 70,
+        stagger: 0.1,
+        duration: 0.7,
+        ease: "power2.out"
+    });
 
     return (
         <section className="section-padding bg-background overflow-hidden">
@@ -53,9 +60,9 @@ export default function WhatWeDoSection() {
                     <h3 className="text-2xl font-heading font-bold text-foreground mb-8 text-center">
                         Our Products & Equipment
                     </h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {/* Card 1 */}
-                        <div className="bg-muted/30 rounded-lg p-6 hover:shadow-lg transition-all duration-300 hover:bg-muted/50">
+                        <div className="gsap-card bg-muted/30 rounded-lg p-6 hover:shadow-lg transition-all duration-300 hover:bg-muted/50">
                             <div className="w-20 h-20 mb-4 mx-auto">
                                 <Image
                                     src="/images/air-compressor.png"
@@ -70,7 +77,7 @@ export default function WhatWeDoSection() {
                         </div>
 
                         {/* Card 2 */}
-                        <div className="bg-muted/30 rounded-lg p-6 hover:shadow-lg transition-all duration-300 hover:bg-muted/50">
+                        <div className="gsap-card bg-muted/30 rounded-lg p-6 hover:shadow-lg transition-all duration-300 hover:bg-muted/50">
                             <div className="w-20 h-20 mb-4 mx-auto">
                                 <Image
                                     src="/images/mechanical-spares-ultimate.png"
@@ -85,7 +92,7 @@ export default function WhatWeDoSection() {
                         </div>
 
                         {/* Card 3 */}
-                        <div className="bg-muted/30 rounded-lg p-6 hover:shadow-lg transition-all duration-300 hover:bg-muted/50">
+                        <div className="gsap-card bg-muted/30 rounded-lg p-6 hover:shadow-lg transition-all duration-300 hover:bg-muted/50">
                             <div className="w-20 h-20 mb-4 mx-auto">
                                 <Image
                                     src="/images/electrical-spares.png"
@@ -100,7 +107,7 @@ export default function WhatWeDoSection() {
                         </div>
 
                         {/* Card 4 */}
-                        <div className="bg-muted/30 rounded-lg p-6 hover:shadow-lg transition-all duration-300 hover:bg-muted/50">
+                        <div className="gsap-card bg-muted/30 rounded-lg p-6 hover:shadow-lg transition-all duration-300 hover:bg-muted/50">
                             <div className="w-20 h-20 mb-4 mx-auto">
                                 <Image
                                     src="/images/product-gauge.png"
@@ -115,7 +122,7 @@ export default function WhatWeDoSection() {
                         </div>
 
                         {/* Card 5 */}
-                        <div className="bg-muted/30 rounded-lg p-6 hover:shadow-lg transition-all duration-300 hover:bg-muted/50">
+                        <div className="gsap-card bg-muted/30 rounded-lg p-6 hover:shadow-lg transition-all duration-300 hover:bg-muted/50">
                             <div className="w-20 h-20 mb-4 mx-auto">
                                 <Image
                                     src="/images/product-safety.png"
@@ -130,7 +137,7 @@ export default function WhatWeDoSection() {
                         </div>
 
                         {/* Card 6 */}
-                        <div className="bg-muted/30 rounded-lg p-6 hover:shadow-lg transition-all duration-300 hover:bg-muted/50 text-center">
+                        <div className="gsap-card bg-muted/30 rounded-lg p-6 hover:shadow-lg transition-all duration-300 hover:bg-muted/50 text-center">
                             <div className="w-28 h-28 mb-4 mx-auto">
                                 <Image
                                     src="/images/product-fabricated.png"
@@ -145,7 +152,7 @@ export default function WhatWeDoSection() {
                         </div>
 
                         {/* Card 7 */}
-                        <div className="bg-muted/30 rounded-lg p-6 hover:shadow-lg transition-all duration-300 hover:bg-muted/50">
+                        <div className="gsap-card bg-muted/30 rounded-lg p-6 hover:shadow-lg transition-all duration-300 hover:bg-muted/50">
                             <div className="w-20 h-20 mb-4 mx-auto">
                                 <Image
                                     src="/images/product-steel.png"
@@ -160,7 +167,7 @@ export default function WhatWeDoSection() {
                         </div>
 
                         {/* Card 8 */}
-                        <div className="bg-muted/30 rounded-lg p-6 hover:shadow-lg transition-all duration-300 hover:bg-muted/50">
+                        <div className="gsap-card bg-muted/30 rounded-lg p-6 hover:shadow-lg transition-all duration-300 hover:bg-muted/50">
                             <div className="w-20 h-20 mb-4 mx-auto">
                                 <Image
                                     src="/images/tool-caliper.png"
@@ -175,7 +182,7 @@ export default function WhatWeDoSection() {
                         </div>
 
                         {/* Card 9 */}
-                        <div className="bg-muted/30 rounded-lg p-6 hover:shadow-lg transition-all duration-300 hover:bg-muted/50">
+                        <div className="gsap-card bg-muted/30 rounded-lg p-6 hover:shadow-lg transition-all duration-300 hover:bg-muted/50">
                             <div className="w-20 h-20 mb-4 mx-auto">
                                 <Image
                                     src="/images/product-raw-materials.png"
