@@ -240,8 +240,8 @@ h6 {
 
 .nav-link {
   position: relative;
-  color: var(--color-foreground);
-  opacity: 0.8;
+  color: #000000;
+  opacity: 1;
   transition: color 0.2s ease;
   font-weight: 500;
 }

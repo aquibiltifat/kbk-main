@@ -79,10 +79,10 @@ const IndustriesDiagram = () => {
             <div className="hidden lg:block relative h-[800px] w-full mt-10">
                 {/* Central Hub */}
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
-                    <div className="w-56 h-56 rounded-full bg-white flex items-center justify-center border-8 border-primary shadow-glow overflow-hidden">
+                    <div className="w-64 h-64 rounded-full border-[8px] border-black bg-white flex items-center justify-center ring-8 ring-black">
                         <div className="text-center p-4">
-                            <span className="text-primary font-heading font-bold text-xl block">INDUSTRIES</span>
-                            <span className="text-muted-foreground text-sm font-medium">WE SERVE</span>
+                            <span className="text-primary font-heading font-bold text-3xl block tracking-tight">INDUSTRIES</span>
+                            <span className="text-muted-foreground text-sm font-medium uppercase tracking-[0.2em] mt-1 block">WE SERVE</span>
                         </div>
                     </div>
                 </div>
@@ -147,10 +147,10 @@ const IndustriesDiagram = () => {
             <div className="lg:hidden">
                 {/* Central Hub for Mobile */}
                 <div className="flex justify-center mb-10">
-                    <div className="w-40 h-40 rounded-full bg-white flex items-center justify-center border-6 border-primary shadow-glow overflow-hidden">
+                    <div className="w-48 h-48 rounded-full border-[6px] border-black bg-white flex items-center justify-center ring-8 ring-black">
                         <div className="text-center p-4">
-                            <span className="text-primary font-heading font-bold text-lg block">INDUSTRIES</span>
-                            <span className="text-muted-foreground text-xs font-medium">WE SERVE</span>
+                            <span className="text-primary font-heading font-bold text-xl block tracking-tight">INDUSTRIES</span>
+                            <span className="text-muted-foreground text-xs font-medium uppercase tracking-[0.2em] mt-1 block">WE SERVE</span>
                         </div>
                     </div>
                 </div>
