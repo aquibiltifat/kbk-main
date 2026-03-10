@@ -1,10 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600&display=swap');
 @import "tailwindcss";
 
 /* Tailwind 4 Theme Configuration */
 @theme {
-  --font-heading: 'Times New Roman', serif;
-  --font-body: 'Open Sans', sans-serif;
+  --font-heading: 'Times New Roman', "Times", serif;
+  --font-body: 'Times New Roman', "Times", serif;
 
   /* Light mode colors */
   --color-background: hsl(0 0% 100%);

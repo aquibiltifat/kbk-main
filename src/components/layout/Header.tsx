@@ -40,8 +40,8 @@ const Header = () => {
 
                                 <div className="h-px w-full bg-foreground/50 my-1"></div>
 
-                                <p className="text-xs sm:text-sm lg:text-xl font-heading font-bold text-foreground tracking-tight transition-colors whitespace-nowrap truncate">
-                                    Sourcing Services Pvt. Ltd.
+                                <p className="text-xs sm:text-sm lg:text-2xl font-heading font-bold text-foreground tracking-tight transition-colors whitespace-nowrap truncate">
+                                    SOURCING SERVICES PVT. LTD.
                                 </p>
                             </div>
                         </Link>

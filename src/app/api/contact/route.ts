@@ -86,7 +86,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
     try {
-        const { name, email, phone, subject, message } = await req.json();
+        const { name, email, phone, company, country, subject, message } = await req.json();
 
         // Validate required fields
         if (!name || !email || !subject || !message) {
@@ -111,7 +111,7 @@ export async function POST(req: NextRequest) {
             to: process.env.ADMIN_EMAIL,
             subject: `New Contact Form: ${subject}`,
             html: `
-                <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e0e0e0; border-radius: 10px;">
+                <div style="font-family: 'Times New Roman', Times, serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e0e0e0; border-radius: 10px;">
                     <h2 style="color: #2563eb; border-bottom: 2px solid #2563eb; padding-bottom: 10px;">New Contact Form Submission</h2>
                     <table style="width: 100%; border-collapse: collapse;">
                         <tr>
@@ -121,6 +121,14 @@ export async function POST(req: NextRequest) {
                         <tr>
                             <td style="padding: 10px 0; border-bottom: 1px solid #eee; font-weight: bold; color: #333;">Email:</td>
                             <td style="padding: 10px 0; border-bottom: 1px solid #eee; color: #555;">${email}</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px 0; border-bottom: 1px solid #eee; font-weight: bold; color: #333;">Company:</td>
+                            <td style="padding: 10px 0; border-bottom: 1px solid #eee; color: #555;">${company || "Not provided"}</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px 0; border-bottom: 1px solid #eee; font-weight: bold; color: #333;">Country:</td>
+                            <td style="padding: 10px 0; border-bottom: 1px solid #eee; color: #555;">${country || "Not provided"}</td>
                         </tr>
                         <tr>
                             <td style="padding: 10px 0; border-bottom: 1px solid #eee; font-weight: bold; color: #333;">Phone:</td>
@@ -143,7 +151,7 @@ export async function POST(req: NextRequest) {
             to: email,
             subject: "Thank you for contacting KBK Sourcing Services",
             html: `
-                <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e0e0e0; border-radius: 10px;">
+                <div style="font-family: 'Times New Roman', Times, serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e0e0e0; border-radius: 10px;">
                     <div style="text-align: center; margin-bottom: 20px;">
                         <h1 style="color: #2563eb; margin: 0;">KBK Sourcing Services</h1>
                     </div>
