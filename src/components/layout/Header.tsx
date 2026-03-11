@@ -20,7 +20,7 @@ const Header = () => {
 
     return (
         <>
-            <header className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur-md border-b border-foreground/10 shadow-soft">
+            <header className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur-lg border-b border-foreground/10 shadow-soft">
                 <div className="w-full px-3 sm:px-4 lg:px-6">
                     <nav className="flex items-center justify-between h-16 sm:h-20 lg:h-24">
                         {/* Logo */}
@@ -30,7 +30,7 @@ const Header = () => {
                                 alt="KBK Symbol"
                                 width={100}
                                 height={100}
-                                className="h-10 sm:h-12 lg:h-16 w-auto object-contain shrink-0 transition-transform duration-300 group-hover:scale-105"
+                                className="h-10 sm:h-12 lg:h-16 w-auto object-contain"
                                 priority
                             />
                             <div className="pl-2 sm:pl-3 flex flex-col items-start min-w-0">
