@@ -30,18 +30,18 @@ const Header = () => {
                                 alt="KBK Symbol"
                                 width={100}
                                 height={100}
-                                className="h-10 sm:h-12 lg:h-16 w-auto object-contain"
+                                className="h-10 sm:h-12 lg:h-14 w-auto object-contain brightness-95 contrast-95 transition-all duration-300 group-hover:brightness-100 group-hover:scale-105"
                                 priority
                             />
-                            <div className="pl-2 sm:pl-3 flex flex-col items-start min-w-0">
-                                <h1 className="text-sm sm:text-lg lg:text-2xl font-heading font-bold text-foreground tracking-tight transition-colors whitespace-nowrap">
+                            <div className="pl-3 sm:pl-4 flex flex-col items-start min-w-0">
+                                <h1 className="text-base sm:text-lg lg:text-xl font-heading font-bold text-foreground/90 tracking-tight transition-colors whitespace-nowrap leading-none">
                                     KBK
                                 </h1>
 
-                                <div className="h-px w-full bg-foreground/50 my-1"></div>
+                                <div className="h-px w-full bg-black my-1.5"></div>
 
-                                <p className="text-xs sm:text-sm lg:text-2xl font-heading font-bold text-foreground tracking-tight transition-colors whitespace-nowrap truncate">
-                                    SOURCING SERVICES PVT. LTD.
+                                <p className="text-base sm:text-lg lg:text-xl font-heading font-bold text-foreground/90 tracking-tight transition-colors whitespace-nowrap leading-none truncate uppercase">
+                                    Sourcing Services Pvt. Ltd.
                                 </p>
                             </div>
                         </Link>

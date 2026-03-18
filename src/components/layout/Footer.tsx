@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Instagram, Linkedin, MapPin, Phone, Mail } from "lucide-react";
+import { Instagram, Linkedin, MapPin, Phone, Mail, Globe } from "lucide-react";
 
 const quickLinks = [
     { name: "Home", path: "/" },
@@ -27,7 +27,7 @@ const Footer = () => {
             <div className="container-custom py-16 md:py-20">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8">
                     {/* Brand Section */}
-                    <div className="lg:col-span-4 space-y-8">
+                    <div className="md:col-span-2 lg:col-span-4 space-y-8">
                         <Link href="/" className="inline-block group" aria-label="KBK Sourcing Services home">
                             <Image
                                 src="/images/kbk-footer-logo.png"
@@ -41,31 +41,11 @@ const Footer = () => {
                             <p className="text-base leading-relaxed text-white/80 text-justify">
                                 KBK Sourcing Services Pvt. Ltd. is a premier global trading house and industrial sourcing partner. We specialize in end-to-end supply chain solutions for critical industries, ensuring unmatched quality and reliability.
                             </p>
-                            <div className="flex items-center gap-4 pt-4">
-                                <a
-                                    href="https://www.instagram.com/kbk_sourcing_services_pvt_ltd"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="p-2.5 rounded-full border border-white/20 hover:border-white hover:bg-white hover:text-primary transition-all duration-300 group"
-                                    aria-label="Instagram"
-                                >
-                                    <Instagram className="w-5 h-5 opacity-80 group-hover:opacity-100 transition-all" />
-                                </a>
-                                <a
-                                    href="https://www.kbksspl.com"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="p-2.5 rounded-full border border-white/20 hover:border-white hover:bg-white hover:text-primary transition-all duration-300 group"
-                                    aria-label="LinkedIn"
-                                >
-                                    <Linkedin className="w-5 h-5 opacity-80 group-hover:opacity-100 transition-all" />
-                                </a>
-                            </div>
                         </div>
                     </div>
 
                     {/* Navigation Columns */}
-                    <div className="lg:col-span-2 space-y-6">
+                    <div className="md:col-span-1 lg:col-span-2 space-y-6">
                         <h4 className="text-sm font-bold tracking-widest text-white uppercase border-l-2 border-white pl-3">Resources</h4>
                         <ul className="space-y-4">
                             {quickLinks.map((link) => (
@@ -81,7 +61,7 @@ const Footer = () => {
                         </ul>
                     </div>
 
-                    <div className="lg:col-span-2 space-y-6">
+                    <div className="md:col-span-1 lg:col-span-2 space-y-6">
                         <h4 className="text-sm font-bold tracking-widest text-white uppercase border-l-2 border-white pl-3">Industries</h4>
                         <ul className="space-y-4">
                             {industries.map((industry) => (
@@ -91,45 +71,104 @@ const Footer = () => {
                             ))}
                         </ul>
                     </div>
-
-                    {/* Contact Column */}
-                    <div className="lg:col-span-4 space-y-6">
-                        <h4 className="text-sm font-bold tracking-widest text-white uppercase border-l-2 border-white pl-3">Corporate Headquarters</h4>
-                        <ul className="space-y-5">
-                            <li className="flex items-start gap-4">
-                                <div className="p-2 bg-white/10 rounded border border-white/20 flex items-center justify-center">
-                                    <MapPin className="w-5 h-5 text-white" />
+                    <div className="md:col-span-2 lg:col-span-4 space-y-6">
+                        <h4 className="text-sm font-bold tracking-widest text-white uppercase border-l-2 border-white pl-3">Stay Connected</h4>
+                        <div className="flex flex-col gap-6">
+                            <a 
+                                href="https://www.google.com/maps/search/?api=1&query=Lucknow+226003+UP+India" 
+                                target="_blank" 
+                                rel="noopener noreferrer" 
+                                className="flex items-start gap-4 group"
+                            >
+                                <div className="pt-1.5 shrink-0 transition-transform duration-300 group-hover:scale-110">
+                                    <Image 
+                                        src="/images/google-maps-icon.png" 
+                                        alt="Google Maps" 
+                                        width={28} 
+                                        height={28} 
+                                        className="w-7 h-7 object-contain"
+                                    />
                                 </div>
                                 <div className="space-y-1">
-                                    <p className="text-xs font-bold text-white/50 uppercase tracking-tighter">Visit Us</p>
-                                    <a href="https://www.google.com/maps/search/?api=1&query=Lucknow+226003+UP+India" target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-white/90 hover:text-white transition-colors block leading-tight">
+                                    <p className="text-xs font-bold text-white/40 uppercase tracking-tighter">Visit Us</p>
+                                    <span className="text-sm font-medium text-white/80 group-hover:text-white transition-colors duration-300 leading-snug block">
                                         Lucknow - 226003,<br />Uttar Pradesh, India
-                                    </a>
+                                    </span>
                                 </div>
-                            </li>
-                            <li className="flex items-start gap-4">
-                                <div className="p-2 bg-white/10 rounded border border-white/20 flex items-center justify-center">
-                                    <Phone className="w-5 h-5 text-white" />
+                            </a>
+                            <a 
+                                href="tel:+919305605160" 
+                                className="flex items-start gap-4 group"
+                            >
+                                <div className="pt-1.5 shrink-0 transition-transform duration-300 group-hover:scale-110">
+                                    <Phone className="w-7 h-7 text-[#22C55E] stroke-[2.5px]" />
                                 </div>
                                 <div className="space-y-1">
-                                    <p className="text-xs font-bold text-white/50 uppercase tracking-tighter">Call Support</p>
-                                    <a href="tel:+919305605160" className="text-sm font-medium text-white/90 hover:text-white transition-colors block">
+                                    <p className="text-xs font-bold text-white/40 uppercase tracking-tighter">Call Support</p>
+                                    <span className="text-sm font-medium text-white/80 group-hover:text-white transition-colors duration-300 block">
                                         +91 9305605160
-                                    </a>
+                                    </span>
                                 </div>
-                            </li>
-                            <li className="flex items-start gap-4">
-                                <div className="p-2 bg-white/10 rounded border border-white/20 flex items-center justify-center">
-                                    <Mail className="w-5 h-5 text-white" />
+                            </a>
+                            <a 
+                                href="mailto:sales@kbksspl.com" 
+                                className="flex items-start gap-4 group"
+                            >
+                                <div className="pt-1.5 shrink-0 transition-transform duration-300 group-hover:scale-110">
+                                    <Image 
+                                        src="/images/gmail-icon.png" 
+                                        alt="Gmail" 
+                                        width={28} 
+                                        height={28} 
+                                        className="w-7 h-7 object-contain"
+                                    />
                                 </div>
                                 <div className="space-y-1">
-                                    <p className="text-xs font-bold text-white/50 uppercase tracking-tighter">General Inquiry</p>
-                                    <a href="mailto:sales@kbksspl.com" className="text-sm font-medium text-white/90 hover:text-white transition-colors block font-bold">
+                                    <p className="text-xs font-bold text-white/40 uppercase tracking-tighter">Gmail</p>
+                                    <span className="text-sm font-medium text-white/80 group-hover:text-white transition-colors duration-300 block">
                                         sales@kbksspl.com
-                                    </a>
+                                    </span>
                                 </div>
-                            </li>
-                        </ul>
+                            </a>
+                            <a 
+                                href="https://www.kbksspl.com" 
+                                target="_blank" 
+                                rel="noopener noreferrer" 
+                                className="flex items-start gap-4 group"
+                            >
+                                <div className="pt-1.5 shrink-0 transition-transform duration-300 group-hover:scale-110">
+                                    <Globe className="w-7 h-7 text-[#3B82F6] stroke-[2.5px]" />
+                                </div>
+                                <div className="space-y-1">
+                                    <p className="text-xs font-bold text-white/40 uppercase tracking-tighter">Website</p>
+                                    <span className="text-sm font-medium text-white/80 group-hover:text-white transition-colors duration-300 block">
+                                        www.kbksspl.com
+                                    </span>
+                                </div>
+                            </a>
+                            <a 
+                                href="https://www.instagram.com/kbk_sourcing_services_pvt_ltd" 
+                                target="_blank" 
+                                rel="noopener noreferrer" 
+                                className="flex items-start gap-4 group"
+                            >
+                                <div className="pt-1.5 shrink-0 transition-transform duration-300 group-hover:scale-110">
+                                    <Image 
+                                        src="/images/instagram-icon.png" 
+                                        alt="Instagram" 
+                                        width={28} 
+                                        height={28} 
+                                        className="w-7 h-7 object-contain"
+                                    />
+                                </div>
+                                <div className="space-y-1">
+                                    <p className="text-xs font-bold text-white/40 uppercase tracking-tighter">Instagram</p>
+                                    <span className="text-sm font-medium text-white/80 group-hover:text-white transition-colors duration-300 block">
+                                        @kbk_sourcing_services
+                                    </span>
+                                </div>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
